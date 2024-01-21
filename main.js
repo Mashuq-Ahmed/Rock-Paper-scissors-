@@ -3,7 +3,7 @@ function getComputerChoice() {
   if (q<=0.33)
     return "rock";
   else if (q<=0.67 && q>0.33) 
-    { return "paper";
+    {return "paper";
     
     }
   else if  (q<1 && q>0.67)
@@ -11,55 +11,66 @@ function getComputerChoice() {
       return "scissors";
     } 
 }
+
+// Few declarations
 var a=0;
 var b=0;
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection=="paper"||"Paper"||"PAPER"){
+var playerSelection ="";
+const d= document.querySelector("#d");
+const di= document.querySelector("#di");
+const py= document.querySelector("#py");
+const pc= document.querySelector("#pc");
+const cc= document.querySelector("#cc");
+const yc= document.querySelector("#yc");
+
+function playRound(playerSelection , computerSelection) {
+    
+    if (playerSelection==("paper"||"Paper"||"PAPER")){
       if (computerSelection=="scissors"){
         b=b+1;  
-        return "You lose! scissors beats paper";
+        d.textContent= "You lose! scissors beats paper";
          
         
       }
       else if (computerSelection=="rock") {
         a+=1;  
-        return "You win! paper beats rock";
+        d.textContent= "You win! paper beats rock";
        
       }
       
       else if (computerSelection=="paper") 
-        {return "It's a tie!";}
+        {d.textContent= "It's a tie!";}
       
     }
-    else if (playerSelection=="rock"||"Rock"||"ROCK"){
-      if (computerSelection=="scissors"){
+    else if (playerSelection==("rock"||"Rock"||"ROCK")){
+      if(computerSelection=="scissors"){
         a+=1;  
-        return "You win! rock beats scissors";
+        d.textContent= "You win! rock beats scissors";
          
         
       }
       else if (computerSelection=="rock"){
-        return "Its a tie";
+        d.textContent= "Its a tie";
       }
       else if (computerSelection=="paper"){
         b+=1;
-        return "You lose! paper beats rock";
+        d.textContent= "You lose! paper beats rock";
         
       }
     }
-    else if (playerSelection=="scissors"||"Scissors"||"SCISSORS"){
+    else if (playerSelection==("scissors"||"Scissors"||"SCISSORS")){
       if (computerSelection=="scissors"){
-          return "Its a tie!";
+          d.textContent= "Its a tie!";
         
       }
       else if (computerSelection=="rock"){
         b+=1;
-        return "You lose! rock beats scissors";
+        d.textContent= "You lose! rock beats scissors";
         
       }
       else if (computerSelection=="paper"){
         a+=1;
-        return "You win! scissors beats paper";
+        d.textContent= "You win! scissors beats paper";
         
       }
     }
@@ -67,26 +78,91 @@ function playRound(playerSelection, computerSelection) {
 
   }
 
-function game() {
-    var c=1;
-    while (c<=5) {
-      const playerSelection = prompt("Enter your throw : rock/scissors/paper");
-      const computerSelection = getComputerChoice();
-      c+=1;
-      console.log(playRound(playerSelection, computerSelection));
-      
-    }
+function game(){
+    
     if (a>b){
-      console.log("You win!");
+      
+
     }
     else if (a==b) {
-      console.log("Its a tie!");
+      alert("")
     }
     else if(a<b){
-      console.log("You lose!");
+      alert("You lose");
     }
 }
    
   
 
-game();
+
+
+
+// Event handlers
+
+
+const r = document.querySelector("#r");
+const p = document.querySelector("#p");
+const s = document.querySelector("#s");
+
+
+r.addEventListener("click",()=>{
+if (a<5 && b<5) { 
+  playerSelection="rock";
+  const computerSelection = getComputerChoice();
+  playRound(playerSelection, computerSelection)
+  yc.textContent="Your choice is "+playerSelection;
+  cc.textContent="Computer choice is "+computerSelection;
+  py.textContent="Your score: " +String(a);
+  pc.textContent="pc score: " +String(b);
+  }
+else if(a==5){
+    alert("You win!");
+  }
+else if (b==5 && a==5) {
+    alert("It's a tie!");
+  }
+else if(b==5){
+    alert("You lose!");
+  }
+  });
+p.addEventListener("click", ()=>{
+if (a<5 && b<5) { 
+  playerSelection="paper";
+  const computerSelection = getComputerChoice();
+  playRound(playerSelection, computerSelection)
+  yc.textContent="Your choice is "+playerSelection;
+  cc.textContent="Computer choice is "+computerSelection;
+  py.textContent="Your score: " +String(a);
+  pc.textContent="pc score: " +String(b);
+}
+else if(a==5){
+  alert("You win!");
+}
+else if (b==5 && a==5) {
+  alert("It's a tie!");
+}
+else if(b==5){
+  alert("You lose!");
+}});
+
+s.addEventListener("click",()=>{ 
+if (a<5 && b<5) { 
+  playerSelection="scissors";
+  const computerSelection = getComputerChoice();
+  playRound(playerSelection, computerSelection)
+  yc.textContent="Your choice is "+playerSelection;
+  cc.textContent="Computer choice is "+computerSelection;
+  py.textContent="Your score: " +String(a);
+  pc.textContent="pc score: " +String(b);
+}
+else if(a==5){
+  alert("You win!");
+}
+else if (b==5 && a==5) {
+  alert("It's a tie!");
+}
+else if(b==5){
+  alert("You lose!");
+}});
+
+
